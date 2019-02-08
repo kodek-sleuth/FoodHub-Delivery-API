@@ -1,6 +1,6 @@
 from app import create_app, db
 
-app=create_app(config_name='development')
+app=create_app(config_name='testing')
 
 with app.app_context():
     db.create_all()

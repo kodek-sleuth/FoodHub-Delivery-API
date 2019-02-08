@@ -1,5 +1,5 @@
 import unittest
-from app import db, current_app
+from app import db, create_app
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
@@ -10,6 +10,7 @@ manager=Manager(app)
 
 manager.add_command('db', MigrateCommand)
 
+@manager.command
 def tests():
     suite=unittest.TestLoader().discover('./Tests', pattern='unit*.py')
     report=unittest.TextTestRunner(verbosity=2).run(suite)
