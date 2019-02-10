@@ -1,9 +1,7 @@
 import json
-import unittest
-from unit_setUpTestCase import AuthTest
-from app import create_app, db
+from Tests import unit_setup_testcase
 
-class AdminResgisterTest(AuthTest):
+class AdminResgisterTestCase(unit_setup_testcase.AuthTest):
     def test_Register_route(self):
         res=self.client().post('/auth/admin/Register', data=json.dumps(self.adminRegDetails), content_type='application/json')
         result=json.loads(res.data.decode())

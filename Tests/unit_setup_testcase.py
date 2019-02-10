@@ -7,8 +7,6 @@ class AuthTest(unittest.TestCase):
         self.app = create_app(config_name='testing')
         self.client = self.app.test_client
         with self.app.app_context():
-            db.drop_all()
-            db.create_all()
             self.adminRegDetails = {
                 "Name":"admin",
                 "Email":"admintest@kitende.com",
@@ -49,7 +47,7 @@ class AuthTest(unittest.TestCase):
                 "Price":"Ugshs 12000"
             }
 
-            db.session.remove()
+            db.session.close()
             db.drop_all()
             db.create_all()
 

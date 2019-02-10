@@ -22,7 +22,7 @@ class RegistrationView(MethodView):
             response={
                 "Message":"Try checking Your Credentials and Try again"
             }
-            return make_response(jsonify(response)), 401
+            return make_response(jsonify(response)), 409
 
 class LoginView(MethodView):
     def post(self):
