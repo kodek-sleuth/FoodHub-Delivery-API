@@ -39,7 +39,7 @@ def makeOrder(Username):
     
     except:
         try:
-            request_data = request.get_json()
+            request_data = request.get_json(force=True)
             user = User.query.filter_by(Username=Username).first()
             order = Order.requestOrder(request_data["Name"], user.id)
 

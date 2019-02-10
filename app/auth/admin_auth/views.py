@@ -11,7 +11,7 @@ admin_auth=Blueprint('admin_auth', __name__)
 class RegistrationView(MethodView):
     def post(self):
         try:
-            request_data = request.get_json()
+            request_data = request.get_json(force=True)
             adminReg=Admin.create_admin(request_data["Name"], request_data["Email"], request_data["Username"], request_data["Password"])
             response={
                 "Message":"You have successfully Created an Admin account"
@@ -27,7 +27,7 @@ class RegistrationView(MethodView):
 class LoginView(MethodView):
     def post(self):
         try:
-            request_data = request.get_json()
+            request_data = request.get_json(force=True)
             admin=Admin.query.filter_by(Username=request_data["Username"]).first()
             if admin.Username==request_data["Username"] and admin.Password==request_data["Password"]:
                 expiration_time=datetime.datetime.utcnow()+datetime.timedelta(hours=24)

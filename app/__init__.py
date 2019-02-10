@@ -14,6 +14,7 @@ def create_app(config_name):
     
     db.__init__(app)
     CORS(app)
+    swagger=Swagger(app)
     
     from app.auth.admin_auth.views import admin_auth 
     from app.auth.user_auth.views import user_auth

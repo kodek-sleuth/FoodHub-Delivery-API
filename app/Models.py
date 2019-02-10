@@ -112,7 +112,7 @@ class Admin(db.Model):
     
     def __repr__(self):
         adminObject = {
-            "Username":self.Name,
+            "Username":self.Username,
             "Password":self.Password
         }
 

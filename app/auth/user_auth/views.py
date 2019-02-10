@@ -27,7 +27,7 @@ class RegistrationView(MethodView):
 class LoginView(MethodView):
     def post(self):
         try:
-            request_data = request.get_json()
+            request_data = request.get_json(force=True)
             user=User.query.filter_by(Username=request_data["Username"]).first()
             if user.Username==request_data["Username"] and user.Password==request_data["Password"]:
                 expiration_time=datetime.datetime.utcnow()+datetime.timedelta(hours=1)

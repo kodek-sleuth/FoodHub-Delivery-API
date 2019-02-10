@@ -1,25 +1,27 @@
 import json
 import unittest
-from app import create_app, db
-class BaseTest(unittest.TestCase):
-    def setUp(self):
-        self.app=create_app('testing')
-        self.client=self.app.test_client
-        with self.app.app_context():
+from app import *
 
-            self.adminRegDetails={
-                "Name":"adminTesting",
-                "Email":"admintester@kitende.com",
-                "Username":"adminTester",
+class AuthTest(unittest.TestCase):
+    def setUp(self):
+        self.app = create_app(config_name='testing')
+        self.client = self.app.test_client
+        with self.app.app_context():
+            db.drop_all()
+            db.create_all()
+            self.adminRegDetails = {
+                "Name":"admin",
+                "Email":"admintest@kitende.com",
+                "Username":"adminT",
                 "Password":"admintest"
             }
 
-            self.adminLogDetails={
+            self.adminLogDetails = {
                 "Username":"adminTest",
                 "Password":"admintest"
             }
 
-            self.userRegDetails={
+            self.userRegDetails = {
                 "Name":"adminTesting",
                 "Email":"admin2Test.0@kitende.com",
                 "Username":"adminTest",
@@ -29,24 +31,26 @@ class BaseTest(unittest.TestCase):
                 "Address":"Cronville"
             }
 
-            self.userLogDetails={
+            self.userLogDetails = {
                 "Username":"adminTest",
                 "Password":"admintest"
             }
 
-            self.makeOrder={
+            self.makeOrder = {
                 "Name":"Chips and Liver"
             }
 
-            self.updateOrder={
+            self.updateOrder = {
                 "Name":"Processing"
             }
 
-            self.addToMenu={
+            self.addToMenu = {
                 "Name":"Chips and Fish Salad",
                 "Price":"Ugshs 12000"
             }
 
-            db.session.close()
+            db.session.remove()
             db.drop_all()
             db.create_all()
+
+            
