@@ -12,15 +12,36 @@ class RegistrationView(MethodView):
     def post(self):
         try:
             request_data = request.get_json(force=True)
-            adminReg=Admin.create_admin(request_data["Name"], request_data["Email"], request_data["Username"], request_data["Password"])
-            response={
-                "Message":"You have successfully Created an Admin account"
-            }
-            return make_response(jsonify(response)), 201
-        
+            username=request_data["Username"]
+            email=request_data["Email"]
+            password=request_data["Password"]
+            name=request_data["Name"]
+            try:
+                admin=Admin.query.filter(Username=username).first()
+                if admin.Username==username:
+                    response={
+                        "Message":"An account already exists with that Username"
+                    }
+                    return make_response(jsonify(response)), 409
+
+            except:
+                if '~!@#$%&*():;+=-/' in username:
+                    response={
+                        "Message":"Username can only have Letters and numbers at the end"
+                    }
+                    
+                    return make_response(jsonify(response)), 401
+
+                else:
+                    adminReg=Admin.create_admin(request_data["Name"], request_data["Email"], request_data["Username"], request_data["Password"])
+                    response={
+                        "Message":"You have successfully Created an Admin account"
+                    }
+                    return make_response(jsonify(response)), 201
+    
         except:
             response={
-                "Message":"Try checking Your Credentials and Try again"
+                "Message":"Please Enter valid Username or Email"
             }
             return make_response(jsonify(response)), 401
 
@@ -41,7 +62,7 @@ class LoginView(MethodView):
         
         except:
             response={
-                "Message":"Try checking Your Credentials and Try again"
+                "Message":"Please Enter valid Username or Email"
             }
             return make_response(jsonify(response)), 401
 
