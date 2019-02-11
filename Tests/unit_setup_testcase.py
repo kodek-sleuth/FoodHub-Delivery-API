@@ -34,11 +34,11 @@ class AuthTest(unittest.TestCase):
                 "Password":"usertest"
             }
 
-            self.makeOrder = {
+            self.make_order = {
                 "Name":"Chips and Liver"
             }
 
-            self.updateOrder = {
+            self.update_order_made = {
                 "Name":"Processing"
             }
 
