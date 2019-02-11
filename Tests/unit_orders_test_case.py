@@ -140,6 +140,46 @@ class update_order(unit_setup_testcase.AuthTest):
 
         #Making sure that user That Authorized Admin that Logs in can get a Update an Order
         request_put_Order=self.client().put('/orders/1?token='+result["Access_Token"], data=json.dumps(self.update_order_made), content_type='application/json')
-        result=json.loads(request_put_Order.data.decode())
-        self.assertEqual(result["Message"], "You have successfully Updated Order")
+        response=json.loads(request_put_Order.data.decode())
+        self.assertEqual(response["Message"], "You have successfully Updated Order")
         self.assertEqual(request_put_Order.status, '200 OK')
+
+class delete_order(unit_setup_testcase.AuthTest):
+    def test_admin_delete_order(self):
+        #Making sure That a user that Registers successfully gets Logged in and gets Token
+        request_Reg=self.client().post('/auth/user/Register', data=json.dumps(self.userRegDetails), content_type='application/json')
+        result=json.loads(request_Reg.data.decode())
+        self.assertEqual(result["Message"], "You have successfully Created a User account")
+        self.assertEqual(request_Reg.status, '201 CREATED')
+
+        #Making sure that user gets Logged In and Recieves Token
+        request_Log_In=self.client().post('/auth/user/Login', data=json.dumps(self.userLogDetails), content_type='application/json')
+        result=json.loads(request_Log_In.data.decode())
+        self.assertEqual(result["Message"], "You have successfully Logged In")
+        self.assertEqual(result["Access_Token"], result["Access_Token"])
+        self.assertEqual(request_Log_In.status, '200 OK')
+
+        #Making sure that user That Authorized User that Logs in can make an Order
+        request_make_Order=self.client().post('/user/orders/userTest?token='+result["Access_Token"], data=json.dumps(self.make_order), content_type='application/json')
+        result=json.loads(request_make_Order.data.decode())
+        self.assertEqual(result["Message"], "You have successfully made your order.")
+        self.assertEqual(request_make_Order.status, '201 CREATED')
+
+        request_Reg=self.client().post('/auth/admin/Register', data=json.dumps(self.adminRegDetails), content_type='application/json')
+        result=json.loads(request_Reg.data.decode())
+        self.assertEqual(result["Message"], "You have successfully Created an Admin account")
+        self.assertEqual(request_Reg.status, '201 CREATED')
+
+        #Making sure that Admin gets Logged In and Recieves Token
+        request_Log_In=self.client().post('/auth/admin/Login', data=json.dumps(self.adminLogDetails), content_type='application/json')
+        result=json.loads(request_Log_In.data.decode())
+        self.assertEqual(result["Message"], "You have successfully Logged In")
+        self.assertEqual(result["Access_Token"], result["Access_Token"])
+        self.assertEqual(request_Log_In.status, '200 OK')
+
+        #Making sure that user That Authorized Admin that Logs in can get a Update an Order
+        request_put_Order=self.client().delete('/orders/1?token='+result["Access_Token"])
+        response=json.loads(request_put_Order.data.decode())
+        self.assertEqual(response["Message"], "You have successfully Deleted Order")
+        self.assertEqual(request_put_Order.status, '200 OK')
+

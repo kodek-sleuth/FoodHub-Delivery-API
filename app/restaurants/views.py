@@ -38,7 +38,7 @@ def addRestaurant():
             request_data=request.get_json()
             restaurantToAdd=Restaurants.addRestaurant(request_data["Name"], request_data["Location"])
             response={
-                "Message":"Successfully Added Restaurant."
+                "Message":"You have Successfully Added Restaurant"
                 }
             return make_response(jsonify(response)), 201
         

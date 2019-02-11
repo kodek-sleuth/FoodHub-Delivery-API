@@ -39,7 +39,12 @@ class AuthTest(unittest.TestCase):
             }
 
             self.update_order_made = {
-                "Name":"Processing"
+                "Status":"Processing"
+            }
+
+            self.add_restaurant={
+                "Name":"Kentucky Fried Chicken",
+                "Location":"Kampala"
             }
 
             self.addToMenu = {
