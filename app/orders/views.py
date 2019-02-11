@@ -46,7 +46,7 @@ def makeOrder(Username):
             response={
                     "Message":"You have successfully made your order."
                 }
-            return make_response(jsonify(response)), 200
+            return make_response(jsonify(response)), 201
         
         except:
             response={
@@ -72,7 +72,7 @@ def getallOrders():
         orders = Admin.placedOrders()
         ordersStr = str(orders)
         request_orders = json.loads(ordersStr)
-        return make_response(jsonify(request_orders)), 201
+        return make_response(jsonify(request_orders)), 200
 
 @orders.route("/orders/<int:orderId>", methods=['GET'])
 @admin_Required

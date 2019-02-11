@@ -15,23 +15,23 @@ class AuthTest(unittest.TestCase):
             }
 
             self.adminLogDetails = {
-                "Username":"adminTest",
+                "Username":"adminT",
                 "Password":"admintest"
             }
 
             self.userRegDetails = {
-                "Name":"adminTesting",
-                "Email":"admin2Test.0@kitende.com",
-                "Username":"adminTest",
-                "Password":"admintest",
+                "Name":"userTesting",
+                "Email":"user2Test.0@kitende.com",
+                "Username":"userTest",
+                "Password":"usertest",
                 "Country":"Canada",
                 "City":"Ottawa",
                 "Address":"Cronville"
             }
 
             self.userLogDetails = {
-                "Username":"adminTest",
-                "Password":"admintest"
+                "Username":"userTest",
+                "Password":"usertest"
             }
 
             self.makeOrder = {

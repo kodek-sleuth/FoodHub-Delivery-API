@@ -11,18 +11,42 @@ user_auth=Blueprint('user_auth', __name__)
 class RegistrationView(MethodView):
     def post(self):
         try:
-            request_data = request.get_json()
-            userReg=User.addUser(request_data["Name"], request_data["Email"], request_data["Username"], request_data["Password"], request_data["Country"], request_data["City"], request_data["Address"])
-            response={
-                "Message":"You have successfully Created, Please Login"
-            }
-            return make_response(jsonify(response)), 200
-        
+            request_data = request.get_json(force=True)
+            name=request_data["Name"]
+            username=request_data["Username"]
+            email=request_data["Email"]
+            password=request_data["Password"]
+            country=request_data["Country"]
+            city=request_data["City"]
+            address=request_data["Address"]
+            try:
+                user=User.query.filter(Username=username).first()
+                if user.Username==username:
+                    response={
+                        "Message":"An account already exists with that Username"
+                    }
+                    return make_response(jsonify(response)), 409
+
+            except:
+                if '~!@#$%&*():;+=-/' in username:
+                    response={
+                        "Message":"Username can only have Letters and numbers at the end"
+                    }
+                    
+                    return make_response(jsonify(response)), 401
+
+                else:
+                    userReg=User.addUser(name, email, username, password, country, city, address)
+                    response={
+                        "Message":"You have successfully Created a User account"
+                    }
+                    return make_response(jsonify(response)), 201
+    
         except:
             response={
-                "Message":"Try checking Your Credentials and Try again"
+                "Message":"Please Enter valid Credentials"
             }
-            return make_response(jsonify(response)), 401
+            return make_response(jsonify(response)), 409
 
 class LoginView(MethodView):
     def post(self):
@@ -52,19 +76,18 @@ class LogOutView(MethodView):
             token=request.args.get('token')
             tokenToDB=BlacklistToken.saveToken(token)
             response={
-                    "Message":"You have successfully Logged Out"
+                    "Message":"You have successfully Logged Out",
+                    "Access_Token":"Access Token has been Blacklisted"
                 }
-            
-            return make_response(jsonify(response))
+                
+            return make_response(jsonify(response)), 200
         
         except:
             response={
-                    "Message":"You either not Logged In or have an Invalid Token"
+                    "Message":"LogOut attempt failed try again"
                 }
-            
-            return make_response(jsonify(response))
-
-        
+                
+            return make_response(jsonify(response)), 401
 
 #Creating View Function/Resources
 registrationview=RegistrationView.as_view('registrationview')
@@ -74,4 +97,4 @@ logoutview=LogOutView.as_view('logoutview')
 #adding routes to the Views we just created
 user_auth.add_url_rule('/auth/user/Register', view_func=registrationview, methods=['POST'])
 user_auth.add_url_rule('/auth/user/Login', view_func=loginview, methods=['POST'])
-user_auth.add_url_rule('/user/LogOut', view_func=logoutview, methods=['POST'])
+user_auth.add_url_rule('/user/Logout', view_func=logoutview, methods=['POST'])
