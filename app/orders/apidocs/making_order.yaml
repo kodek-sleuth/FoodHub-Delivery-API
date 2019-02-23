@@ -1,0 +1,57 @@
+Enables a user to make an order
+Requires token for authentication.
+---
+tags:
+  - "Orders"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+parameters:
+  - name: "token"
+    in: "query"
+    required: true
+    description: "The Json Token To make sure user has valid"
+    type: "string"
+  - name: "Username"
+    in: "path"
+    required: true
+    description: "Describes the Username of person making order"
+    type: "string"
+    format: "utf-8"
+  - name: "body"
+    in: "body"
+    required: true
+    description: "The Order name"
+    schema:
+      $ref: "#/definitions/order_name"
+responses:
+  201:
+    description: "You have successfully made your order."
+    schema:
+      $ref: "#/definitions/order_placed_successful"
+  401:
+    description: "Failed To make Order."
+    schema:
+      $ref: "#/definitions/invalid_auth"
+definitions:
+  order_name:
+    type: "object"
+    required:
+      - "Name"
+    properties:
+      Name:
+        type: "string"
+        example: "Posho and Beans"
+  order_placed_successful:
+    type: "object"
+    properties:
+      Message:
+        type: "string"
+        default: "You have successfully made your order."
+  invalid_auth:
+    type: "object"
+    properties:
+      Message:
+        type: "string"
+        default: "You have an Expired Token, Login To get New Token."

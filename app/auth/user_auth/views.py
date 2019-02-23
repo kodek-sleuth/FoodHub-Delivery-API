@@ -9,6 +9,7 @@ user_auth=Blueprint('user_auth', __name__)
 
 #Creating Class based views for Registration, Login and Logout as well as The Token
 class RegistrationView(MethodView):
+    @swag_from('apidocs/register_user.yaml', methods=['POST'])
     def post(self):
         try:
             request_data = request.get_json(force=True)
@@ -49,6 +50,7 @@ class RegistrationView(MethodView):
             return make_response(jsonify(response)), 409
 
 class LoginView(MethodView):
+    @swag_from('apidocs/login.yaml', methods=['POST'])
     def post(self):
         try:
             request_data = request.get_json(force=True)
@@ -61,7 +63,7 @@ class LoginView(MethodView):
                     "Access_Token":token.decode('utf-8')
                 }
                 
-                return make_response(jsonify(response)), 200
+                return make_response(jsonify(response)), 201
         
         except:
             response={
@@ -71,6 +73,7 @@ class LoginView(MethodView):
 
 class LogOutView(MethodView):
     decorators=[user_Required]
+    @swag_from('apidocs/logout.yaml', methods=['POST'])
     def post(self):
         try:
             token=request.args.get('token')

@@ -1,0 +1,44 @@
+Logs out current admin
+Blacklists the Json Web Token in the Query string
+---
+tags:
+  - "Admin"
+produces:
+  - "application/json"
+parameters:
+  - name: "token"
+    in: "query"
+    required: true
+    description: "The Json Web Token to be blacklisted"
+    type: "string"
+responses:
+  200:
+    description: "You have successfully Logged Out"
+    schema:
+      $ref: "#/definitions/logout_ok"
+  401:
+    description: "LogOut attempt failed try againt"
+    schema:
+      $ref: "#/definitions/log_out_failed"
+definitions:
+  logout_ok:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+      Message:
+        type: "string"
+        default:
+          - "You have successfully Logged Out"
+        
+  log_out_failed:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+        default: "fail"
+      message:
+        type: "string"
+        enum:
+          - "You are already logged out"
+  

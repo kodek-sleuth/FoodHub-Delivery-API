@@ -1,0 +1,32 @@
+Fetches Menu
+Returns the current menu
+---
+tags:
+  - "Menu"
+produces:
+  - "application/json"
+responses:
+  200:
+    description: "Return Menu."
+    schema:
+      $ref: "#/definitions/operation_successful"
+  500:
+    description: "Failed to get Menu"
+    schema:
+      $ref: "#/definitions/server_error"
+definitions:
+  operation_successful:
+    type: "object"
+    properties:
+      message:
+        type: "string"
+        default: "You have successfully logged In"
+      access_token:
+        type: "string"
+        example: "xmxmxmmxmmxmxm.xmxmmxmxmxmxm.xmxmmxmxmxmx"
+  server_error:
+    type: "object"
+    properties:
+      Message:
+        type: "string"
+        default: "Failed to get Menu"

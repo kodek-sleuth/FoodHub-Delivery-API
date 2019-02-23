@@ -18,9 +18,9 @@ class all_orders_test_case(unit_setup_testcase.AuthTest):
         self.assertEqual(request_Log_In.status, '200 OK')
 
         #Making sure that Admin That Logs in can view All Orders
-        request_Log_Out=self.client().get('/orders?token='+result["Access_Token"])
-        result=json.loads(request_Log_Out.data.decode())
-        self.assertEqual(request_Log_Out.status, '200 OK')
+        on_login=self.client().get('/orders?token='+result["Access_Token"])
+        result=json.loads(on_login.data.decode())
+        self.assertEqual(on_login.status, '200 OK')
     
     #Making sure that User who Registers and Logs can get order History
 class get_order_history_of_user(unit_setup_testcase.AuthTest):
@@ -36,7 +36,7 @@ class get_order_history_of_user(unit_setup_testcase.AuthTest):
         result=json.loads(request_Log_In.data.decode())
         self.assertEqual(result["Message"], "You have successfully Logged In")
         self.assertEqual(result["Access_Token"], result["Access_Token"])
-        self.assertEqual(request_Log_In.status, '200 OK')
+        self.assertEqual(request_Log_In.status, '201 CREATED')
 
         #Making sure that user That Authorized User that Logs in can view History
         request_Log_Out=self.client().get('/user/userTest/orders?token='+result["Access_Token"])
@@ -57,7 +57,7 @@ class making_order(unit_setup_testcase.AuthTest):
         result=json.loads(request_Log_In.data.decode())
         self.assertEqual(result["Message"], "You have successfully Logged In")
         self.assertEqual(result["Access_Token"], result["Access_Token"])
-        self.assertEqual(request_Log_In.status, '200 OK')
+        self.assertEqual(request_Log_In.status, '201 CREATED')
 
         #Making sure that user That Authorized User that Logs in can make an Order
         request_make_Order=self.client().post('/user/orders/userTest?token='+result["Access_Token"], data=json.dumps(self.make_order), content_type='application/json')
@@ -79,7 +79,7 @@ class get_Specific_Order(unit_setup_testcase.AuthTest):
         result=json.loads(request_Log_In.data.decode())
         self.assertEqual(result["Message"], "You have successfully Logged In")
         self.assertEqual(result["Access_Token"], result["Access_Token"])
-        self.assertEqual(request_Log_In.status, '200 OK')
+        self.assertEqual(request_Log_In.status, '201 CREATED')
 
         #Making sure that user That Authorized User that Logs in can make an Order
         request_make_Order=self.client().post('/user/orders/userTest?token='+result["Access_Token"], data=json.dumps(self.make_order), content_type='application/json')
@@ -118,7 +118,7 @@ class update_order(unit_setup_testcase.AuthTest):
         result=json.loads(request_Log_In.data.decode())
         self.assertEqual(result["Message"], "You have successfully Logged In")
         self.assertEqual(result["Access_Token"], result["Access_Token"])
-        self.assertEqual(request_Log_In.status, '200 OK')
+        self.assertEqual(request_Log_In.status, '201 CREATED')
 
         #Making sure that user That Authorized User that Logs in can make an Order
         request_make_Order=self.client().post('/user/orders/userTest?token='+result["Access_Token"], data=json.dumps(self.make_order), content_type='application/json')
@@ -139,10 +139,10 @@ class update_order(unit_setup_testcase.AuthTest):
         self.assertEqual(request_Log_In.status, '200 OK')
 
         #Making sure that user That Authorized Admin that Logs in can get a Update an Order
-        request_put_Order=self.client().put('/orders/1?token='+result["Access_Token"], data=json.dumps(self.update_order_made), content_type='application/json')
-        response=json.loads(request_put_Order.data.decode())
+        request_update_order=self.client().put('/orders/1?token='+result["Access_Token"], data=json.dumps(self.update_order_made), content_type='application/json')
+        response=json.loads(request_update_order.data.decode())
         self.assertEqual(response["Message"], "You have successfully Updated Order")
-        self.assertEqual(request_put_Order.status, '200 OK')
+        self.assertEqual(request_update_order.status, '200 OK')
 
 class delete_order(unit_setup_testcase.AuthTest):
     def test_admin_delete_order(self):
@@ -157,7 +157,7 @@ class delete_order(unit_setup_testcase.AuthTest):
         result=json.loads(request_Log_In.data.decode())
         self.assertEqual(result["Message"], "You have successfully Logged In")
         self.assertEqual(result["Access_Token"], result["Access_Token"])
-        self.assertEqual(request_Log_In.status, '200 OK')
+        self.assertEqual(request_Log_In.status, '201 CREATED')
 
         #Making sure that user That Authorized User that Logs in can make an Order
         request_make_Order=self.client().post('/user/orders/userTest?token='+result["Access_Token"], data=json.dumps(self.make_order), content_type='application/json')

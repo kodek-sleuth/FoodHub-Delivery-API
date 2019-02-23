@@ -1,0 +1,32 @@
+Gets Specific Order
+Requires admin token for authentication.
+---
+tags:
+  - "Orders"
+produces:
+  - "application/json"
+parameters:
+  - name: "token"
+    in: "query"
+    required: true
+    description: "The Json Token To make sure user has valid"
+    type: "string"
+  - name: "orderId"
+    in: "path"
+    required: true
+    type: integer
+    format: int64
+responses:
+  200:
+    description: "Returns Order."
+  401:
+    description: "You have an Expired Token, Login To get New Token."
+    schema:
+      $ref: "#/definitions/invalid_auth"
+definitions:
+  invalid_auth:
+    type: "object"
+    properties:
+      Message:
+        type: "string"
+        default: "You have an Expired Token, Login To get New Token."

@@ -1,0 +1,68 @@
+Registers a new user
+Creates A New User in the schema.
+---
+tags:
+  - "User"
+parameters:
+  - name: "body"
+    in: "body"
+    required: true
+    description: "user details"
+    schema:
+      $ref: "#/definitions/user_register"
+responses:
+  201:
+    description: "You have successfully Created a User account"
+    schema:
+      $ref: "#/definitions/registration_success"
+  409:
+    description: "Please Enter valid Credentials"
+    schema:
+      $ref: "#/definitions/register_error"
+definitions:
+  user_register:
+    type: "object"
+    required:
+      - "username"
+      - "name"
+      - "password"
+      - "email"
+      - "city"
+      - "country"
+      - "address"
+    properties:
+      Name:
+        type: "string"
+        example: "Kodek Sleuth"
+      Username:
+        type: "string"
+        example: "kodek2000"
+      Email:
+        type: "string"
+        format: "email"
+        example: "kodek2000@gmail.com"
+      Password:
+        type: "string"
+        format: "password"
+        example: "mafiaX"
+      Country:
+        type: "string"
+        example: "Uganda"
+      City:
+        type: "string"
+        example: "Kampala"
+      Address:
+        type: "string"
+        example: "Entebbe, Kitende"
+  registration_success:
+    type: "object"
+    properties:
+      Message:
+        type: "string"
+        default: "You have successfully Created a User account"
+  register_error:
+    type: "object"
+    properties:
+      Message:
+        type: "string"
+        default: "Please Enter valid Credentials"

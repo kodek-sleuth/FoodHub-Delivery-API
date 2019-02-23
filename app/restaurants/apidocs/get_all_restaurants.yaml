@@ -1,0 +1,11 @@
+Gets all restaurants.
+---
+tags:
+  - "Restaurant"
+produces:
+  - "application/json"
+responses:
+  200:
+    description: "Returns restuarants"
+  404:
+    description: "Failed To Get Restaurants."

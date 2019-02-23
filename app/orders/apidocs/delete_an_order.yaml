@@ -1,0 +1,28 @@
+Deletes a single order by id
+Deletes a single order identified by id in the url path
+---
+tags:
+  - "Orders"
+produces:
+  - "application/json"
+parameters:
+  - name: "token"
+    in: "query"
+    required: true
+    description: "JWT token authentication"
+    type: "string"
+  - name: "orderId"
+    in: "path"
+    description: "ID of order to Delete"
+    required: true
+    type: "integer"
+    format: "int64"
+responses:
+  401:
+    description: "You have an Expired Token, Login To get New Token."
+  200:
+    description: "You have successfully Deleted Order"
+  404:
+    description: "Failed To Delete Resource"
+ 
+

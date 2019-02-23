@@ -1,0 +1,59 @@
+Adds a food Item To Menu
+Requires token for authentication.
+---
+tags:
+  - "Menu"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+parameters:
+  - name: "token"
+    in: "query"
+    required: true
+    description: "The Json Token To make sure user has valid"
+    type: "string"
+  - name: "body"
+    in: "body"
+    required: true
+    description: "The Food name"
+    schema:
+      $ref: "#/definitions/food_name"
+responses:
+  201:
+    description: "Item has been added to Menu."
+    schema:
+      $ref: "#/definitions/food_added_successful"
+  401:
+    description: "You have an Expired Token, Login To get New Token."
+    schema:
+      $ref: "#/definitions/invalid_auth"
+  500:
+    description: "Items has not been added to Menu"
+    schema:
+      $ref: "#/definitions/invalid_login"
+definitions:
+  food_name:
+    type: "object"
+    required:
+      - "Name"
+      - "Price"
+    properties:
+      Name:
+        type: "string"
+        example: "Posho and Beans"
+      Price:
+        type: "string"
+        example: "Ugx 12000"
+  food_added_successful:
+    type: "object"
+    properties:
+      Message:
+        type: "string"
+        default: "You have successfully logged In"
+  invalid_auth:
+    type: "object"
+    properties:
+      Message:
+        type: "string"
+        default: "You have an Expired Token, Login To get New Token."

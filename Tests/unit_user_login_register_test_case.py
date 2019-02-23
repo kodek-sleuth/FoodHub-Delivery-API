@@ -21,7 +21,7 @@ class User_Resgister_Login_TestCase(unit_setup_testcase.AuthTest):
         result=json.loads(request_Log.data.decode())
         self.assertEqual(result["Message"], "You have successfully Logged In")
         self.assertEqual(result["Access_Token"], result["Access_Token"])
-        self.assertEqual(request_Log.status, '200 OK')
+        self.assertEqual(request_Log.status, '201 CREATED')
     
 class User_Logout_TestCase(unit_setup_testcase.AuthTest):
     def test_Logout_route(self):
@@ -37,7 +37,7 @@ class User_Logout_TestCase(unit_setup_testcase.AuthTest):
         result=json.loads(request_Log_In.data.decode())
         self.assertEqual(result["Message"], "You have successfully Logged In")
         self.assertEqual(result["Access_Token"], result["Access_Token"])
-        self.assertEqual(request_Log_In.status, '200 OK')
+        self.assertEqual(request_Log_In.status, '201 CREATED')
 
         #Making sure that user That Logs in can Logout
         request_Log_Out=self.client().post('/user/Logout?token='+result["Access_Token"])

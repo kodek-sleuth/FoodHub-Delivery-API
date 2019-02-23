@@ -34,7 +34,7 @@ class User(db.Model):
 
     def __repr__(self):
         userObject = {
-            "Username":self.Name,
+            "Username":self.Username,
             "Password":self.Password
         }
         

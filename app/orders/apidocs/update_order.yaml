@@ -1,0 +1,57 @@
+Updates the Status of an Order
+Requires token for authentication.
+---
+tags:
+  - "Orders"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+parameters:
+  - name: "token"
+    in: "query"
+    required: true
+    description: "The Json Token To make sure user has valid"
+    type: "string"
+  - name: "orderId"
+    in: "path"
+    required: true
+    description: "The id of the order to be updated"
+    type: "integer"
+    format: "int64"
+  - name: "body"
+    in: "body"
+    required: true
+    description: "The Status"
+    schema:
+      $ref: "#/definitions/status"
+responses:
+  200:
+    description: "You have successfully Updated Order"
+    schema:
+      $ref: "#/definitions/item_updated_successfully"
+  401:
+    description: "You have an Expired Token, Login To get New Token."
+    schema:
+      $ref: "#/definitions/invalid_auth"
+definitions:
+  status:
+    type: "object"
+    required:
+      - "Status"
+    properties:
+      Status:
+        type: "string"
+        example: "Processing"
+  item_updated_successfully:
+    type: "object"
+    properties:
+      Message:
+        type: "string"
+        default: "You have successfully Updated Order"
+  invalid_auth:
+    type: "object"
+    properties:
+      Message:
+        type: "string"
+        default: "You have an Expired Token, Login To get New Token."

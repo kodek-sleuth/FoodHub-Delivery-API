@@ -1,0 +1,54 @@
+Logs in a User
+Returns a Json Web Token (JWT) given valid username and password
+---
+tags:
+  - "User"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+parameters:
+  - name: "body"
+    in: "body"
+    required: true
+    description: "The login details of the user"
+    schema:
+      $ref: "#/definitions/user_login"
+responses:
+  201:
+    description: "You have successfully logged In."
+    schema:
+      $ref: "#/definitions/login_successful"
+  401:
+    description: "Try checking Your Credentials and Try again"
+    schema:
+      $ref: "#/definitions/invalid_login"
+definitions:
+  user_login:
+    type: "object"
+    required:
+      - "username"
+      - "password"
+    properties:
+      Username:
+        type: "string"
+        example: "kodek2000"
+      Password:
+        type: "string"
+        format: "password"
+        example: "mafiaX"
+  login_successful:
+    type: "object"
+    properties:
+      message:
+        type: "string"
+        default: "You have successfully logged In"
+      access_token:
+        type: "string"
+        example: "xmxmxmmxmmxmxm.xmxmmxmxmxmxm.xmxmmxmxmxmx"
+  invalid_login:
+    type: "object"
+    properties:
+      Message:
+        type: "string"
+        default: "Try checking Your Credentials and Try again"
