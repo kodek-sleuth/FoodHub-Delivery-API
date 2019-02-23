@@ -104,3 +104,11 @@ A Flask application that enables Users order and have food delivered to them.
 
     
 10.Sample: Use postman to navigate the endpoints in the api.
+
+#### Authors
+- Mugerwa Joseph Lumu
+
+
+* **code sleuth** - *Inspired By* - [code-sleuth](https://github.com/code-sleuth)
+
+* **Kodek Sleuth** - *Initial work* - [kodek2000](https://github.com/kodek2000)
