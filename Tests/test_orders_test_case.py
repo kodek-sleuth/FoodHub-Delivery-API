@@ -1,7 +1,7 @@
 import json
-from Tests import unit_setup_testcase
+import test_setup_testcase
 
-class all_orders_test_case(unit_setup_testcase.AuthTest):
+class all_orders_test_case(test_setup_testcase.AuthTest):
 
     #Making sure That an admin that Registers successfully gets Logged in and gets Token
     def test_view_all_orders_route(self):
@@ -23,7 +23,7 @@ class all_orders_test_case(unit_setup_testcase.AuthTest):
         self.assertEqual(on_login.status, '200 OK')
     
     #Making sure that User who Registers and Logs can get order History
-class get_order_history_of_user(unit_setup_testcase.AuthTest):
+class get_order_history_of_user(test_setup_testcase.AuthTest):
     def test_user_get_order_history(self):
         #Making That a user that Registers successfully gets Logged in and gets Token
         request_Reg=self.client().post('/auth/user/Register', data=json.dumps(self.userRegDetails), content_type='application/json')
@@ -44,7 +44,7 @@ class get_order_history_of_user(unit_setup_testcase.AuthTest):
         self.assertEqual(request_Log_Out.status, '200 OK')
 
     #Making sure that User who Registers and Logs can make an order
-class making_order(unit_setup_testcase.AuthTest):
+class making_order(test_setup_testcase.AuthTest):
     def test_user_make_order(self):
         #Making That a user that Registers successfully gets Logged in and gets Token
         request_Reg=self.client().post('/auth/user/Register', data=json.dumps(self.userRegDetails), content_type='application/json')
@@ -66,7 +66,7 @@ class making_order(unit_setup_testcase.AuthTest):
         self.assertEqual(request_make_Order.status, '201 CREATED')
 
     #Making sure that Admin who Registers and Logs in can get a specific Order    
-class get_Specific_Order(unit_setup_testcase.AuthTest):
+class get_Specific_Order(test_setup_testcase.AuthTest):
     def test_admin_get_specific_order(self):
         #Making sure That a user that Registers successfully gets Logged in and gets Token
         request_Reg=self.client().post('/auth/user/Register', data=json.dumps(self.userRegDetails), content_type='application/json')
@@ -105,7 +105,7 @@ class get_Specific_Order(unit_setup_testcase.AuthTest):
         self.assertEqual(result["Order"], result["Order"])
         self.assertEqual(request_get_Order.status, '200 OK')
 
-class update_order(unit_setup_testcase.AuthTest):
+class update_order(test_setup_testcase.AuthTest):
     def test_admin_update_order(self):
          #Making sure That a user that Registers successfully gets Logged in and gets Token
         request_Reg=self.client().post('/auth/user/Register', data=json.dumps(self.userRegDetails), content_type='application/json')
@@ -144,7 +144,7 @@ class update_order(unit_setup_testcase.AuthTest):
         self.assertEqual(response["Message"], "You have successfully Updated Order")
         self.assertEqual(request_update_order.status, '200 OK')
 
-class delete_order(unit_setup_testcase.AuthTest):
+class delete_order(test_setup_testcase.AuthTest):
     def test_admin_delete_order(self):
         #Making sure That a user that Registers successfully gets Logged in and gets Token
         request_Reg=self.client().post('/auth/user/Register', data=json.dumps(self.userRegDetails), content_type='application/json')

@@ -1,7 +1,7 @@
 import json
-from Tests import unit_setup_testcase
+import test_setup_testcase
 
-class User_Resgister_Login_TestCase(unit_setup_testcase.AuthTest):
+class User_Resgister_Login_TestCase(test_setup_testcase.AuthTest):
     def test_Register_route(self):
         res=self.client().post('/auth/user/Register', data=json.dumps(self.userRegDetails), content_type='application/json')
         result=json.loads(res.data.decode())
@@ -23,7 +23,7 @@ class User_Resgister_Login_TestCase(unit_setup_testcase.AuthTest):
         self.assertEqual(result["Access_Token"], result["Access_Token"])
         self.assertEqual(request_Log.status, '201 CREATED')
     
-class User_Logout_TestCase(unit_setup_testcase.AuthTest):
+class User_Logout_TestCase(test_setup_testcase.AuthTest):
     def test_Logout_route(self):
         
         #Making That a user that Registers successfully gets Logged in and gets Token
@@ -47,7 +47,7 @@ class User_Logout_TestCase(unit_setup_testcase.AuthTest):
         self.assertEqual(request_Log_Out.status, '200 OK')
 
     
-class view_all_users_TestCase(unit_setup_testcase.AuthTest):
+class view_all_users_TestCase(test_setup_testcase.AuthTest):
     def test_view_all_users_route(self):
         #Making sure That an admin that Registers successfully gets Logged in and gets Token
         request_Reg=self.client().post('/auth/admin/Register', data=json.dumps(self.adminRegDetails), content_type='application/json')

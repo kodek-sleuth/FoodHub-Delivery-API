@@ -1,13 +1,13 @@
 import json
-from Tests import unit_setup_testcase
+import test_setup_testcase
 
-class viewRestaurants(unit_setup_testcase.AuthTest):
+class viewRestaurants(test_setup_testcase.AuthTest):
     def test_all_restaurants(self):
         request_res=self.client().get('/restaurants')
         result=json.loads(request_res.data.decode())
         self.assertEqual(request_res.status, '200 OK')
     
-class addRestuarant(unit_setup_testcase.AuthTest):
+class addRestuarant(test_setup_testcase.AuthTest):
     def test_admin_add_restaurant(self):
         request_Reg=self.client().post('/auth/admin/Register', data=json.dumps(self.adminRegDetails), content_type='application/json')
         result=json.loads(request_Reg.data.decode())
@@ -27,7 +27,7 @@ class addRestuarant(unit_setup_testcase.AuthTest):
         self.assertEqual(response["Message"], "You have Successfully Added Restaurant")
         self.assertEqual(request_res.status, '201 CREATED')
 
-class delete_Restaurant(unit_setup_testcase.AuthTest):
+class delete_Restaurant(test_setup_testcase.AuthTest):
     def test_admin_delete_restaurant(self):
         request_Reg=self.client().post('/auth/admin/Register', data=json.dumps(self.adminRegDetails), content_type='application/json')
         result=json.loads(request_Reg.data.decode())

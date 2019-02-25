@@ -1,6 +1,6 @@
 import json
 import unittest
-from app import *
+from app import create_app, db
 
 class AuthTest(unittest.TestCase):
     def setUp(self):

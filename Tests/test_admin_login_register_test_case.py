@@ -1,7 +1,8 @@
 import json
-from Tests import unit_setup_testcase
+import pytest
+import test_setup_testcase
 
-class Admin_Resgister_Login_TestCase(unit_setup_testcase.AuthTest):
+class Admin_Resgister_Login_TestCase(test_setup_testcase.AuthTest):
     def test_Register_route(self):
         res=self.client().post('/auth/admin/Register', data=json.dumps(self.adminRegDetails), content_type='application/json')
         result=json.loads(res.data.decode())
@@ -23,7 +24,7 @@ class Admin_Resgister_Login_TestCase(unit_setup_testcase.AuthTest):
         self.assertEqual(result["Access_Token"], result["Access_Token"])
         self.assertEqual(request_Log.status, '200 OK')
     
-class Admin_Logout_TestCase(unit_setup_testcase.AuthTest):
+class Admin_Logout_TestCase(test_setup_testcase.AuthTest):
     def test_Logout_route(self):
          #Making That a admin that Registers successfully gets Logged in and gets Token
         request_Reg=self.client().post('/auth/admin/Register', data=json.dumps(self.adminRegDetails), content_type='application/json')
