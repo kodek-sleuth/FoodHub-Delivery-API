@@ -5,7 +5,7 @@ python:
 # command to install dependencies
 install:
   - pip3 install -r requirements.txt
-  - pip install unittest2
+  - pip3 install unittest2
 
 env:
   - FLASK_APP="main_app.py" USER_SECRET_KEY="i wont tell if you dont" ADMIN_SECRET_KEY="secret" config_name="testing" SQLALCHEMY_DATABASE_URI="postgresql://postgres:believe@localhost:5432/fortestsonly"
