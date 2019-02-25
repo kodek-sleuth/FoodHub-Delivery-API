@@ -19,7 +19,7 @@ class TestingConfig(Config):
     SQLALCHEMY_TRACK_MODIFICATIONS=False
     USER_SECRET_KEY='i wont tell if you dont'
     ADMIN_SECRET_KEY='secret'
-    SQLALCHEMY_DATABASE_URI='postgresql://josekodek:kevina52@localhost:5432/foodhubtesting'
+    SQLALCHEMY_DATABASE_URI='postgresql://postgres:believe@localhost:5432/fortestsonly'
 
 
 class StagingConfig(Config):

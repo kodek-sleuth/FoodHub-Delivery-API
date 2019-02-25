@@ -8,13 +8,13 @@ install:
   - pip install unittest2
 
 env:
-  - FLASK_APP="main_app.py" USER_SECRET_KEY="i wont tell if you dont" ADMIN_SECRET_KEY="secret" config_name="testing" SQLALCHEMY_DATABASE_URI="postgresql://postgres:kevina52@localhost:5432/foodhubtesting"
+  - FLASK_APP="main_app.py" USER_SECRET_KEY="i wont tell if you dont" ADMIN_SECRET_KEY="secret" config_name="testing" SQLALCHEMY_DATABASE_URI="postgresql://postgres:believe@localhost:5432/fortestsonly"
 
 services:
   - postgresql
 
 before_script:
-  - "psql -c 'create database foodhubtesting;' -U postgres"
+  - "psql -c 'create database fortestsonly;' -U postgres"
 
 script:
   - "python manage.py test"
