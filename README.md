@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kodek2000/Food-Hub-Backend.svg?branch=master)](https://travis-ci.org/kodek2000/Food-Hub-Backend)
+
 # **FOODHUB-DELIVERY API**
 A Flask application that enables Users order and have food delivered to them.
 
