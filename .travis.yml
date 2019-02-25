@@ -8,9 +8,11 @@ install:
   - pip install unittest2
 
 env:
-  - COVERAGE_FILE=".coverage" FLASK_APP="main_app.py" SECRET="i wont tell if you dont" APP_SETTINGS="testing" TEST_DB_URL="postgres://postgres@localhost/test_db"
+  - FLASK_APP="main_app.py" USER_SECRET_KEY="i wont tell if you dont" ADMIN_SECRET_KEY="secret" config_name="testing" SQLALCHEMY_DATABASE_URI="postgresql://josekodek:kevina52@localhost:5432/foodhubtesting"
+
 services:
   - postgresql
+
 before_script:
   - "psql -c 'create database test_db;' -U postgres"
 
