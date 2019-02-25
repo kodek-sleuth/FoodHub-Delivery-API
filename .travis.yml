@@ -5,5 +5,14 @@ python:
 # command to install dependencies
 install:
   - pip3 install -r requirements.txt
-# command to run tests
-script: "python manage.py test"
+  - pip install unittest2
+
+env:
+  - COVERAGE_FILE=".coverage" FLASK_APP="main_app.py" SECRET="i wont tell if you dont" APP_SETTINGS="testing" TEST_DB_URL="postgres://postgres@localhost/test_db"
+services:
+  - postgresql
+before_script:
+  - "psql -c 'create database test_db;' -U postgres"
+
+script:
+  - "python manage.py test"
