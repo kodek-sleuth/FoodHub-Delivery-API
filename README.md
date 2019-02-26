@@ -13,7 +13,7 @@ A Flask application that enables Users order and have food delivered to them.
 
 ## Required Features
 - Users can signUp for an account
-- Users can signIn to their account
+- Users can Login to their account
 - Users can view the menu of foods
 - Users can order food on menu
 - Users can choose food from a variety of restaurants
