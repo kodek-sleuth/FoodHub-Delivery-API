@@ -26,3 +26,6 @@ before_script:
 
 script:
   - "python3 -m pytest --cov-report term-missing --cov Tests"
+
+after_success:
+  - coveralls
