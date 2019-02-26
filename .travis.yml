@@ -1,4 +1,7 @@
+#Describing Language
 language: python
+
+#Describing Python Version
 python:
   - "3.6"
 
@@ -7,7 +10,11 @@ install:
   - pip3 install -r requirements.txt
   - pip3 install unittest2
   - pip3 install pytest
+  - pip3 install coveralls
+  - pip3 install coverage
 
+
+  #Specifying All Exports
 env:
   - FLASK_APP="main_app.py" USER_SECRET_KEY="i wont tell if you dont" ADMIN_SECRET_KEY="secret" config_name="testing" SQLALCHEMY_DATABASE_URI="postgresql://postgres:believe@localhost:5432/fortestsonly"
 
@@ -18,4 +25,4 @@ before_script:
   - "psql -c 'create database fortestsonly;' -U postgres"
 
 script:
-  - "python3 -m pytest"
+  - "python3 -m pytest --cov-report term-missing --cov Tests"
