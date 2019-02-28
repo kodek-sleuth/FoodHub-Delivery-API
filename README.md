@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/kodek2000/Food-Hub-Backend.svg?branch=master)](https://travis-ci.org/kodek2000/Food-Hub-Backend)
+[![Coverage Status](https://coveralls.io/repos/github/kodek2000/Food-Hub-Backend/badge.svg?branch=master)](https://coveralls.io/github/kodek2000/Food-Hub-Backend?branch=master)
 
 # **FOODHUB-DELIVERY API**
 A Flask application that enables Users order and have food delivered to them.
@@ -12,7 +13,7 @@ A Flask application that enables Users order and have food delivered to them.
 
 ## Required Features
 - Users can signUp for an account
-- Users can signIn to their account
+- Users can Login to their account
 - Users can view the menu of foods
 - Users can order food on menu
 - Users can choose food from a variety of restaurants
@@ -40,10 +41,10 @@ A Flask application that enables Users order and have food delivered to them.
 |  `PUT`  |  `/orders/<int>`  |  `Update Specific Order`  |
 |  `DELETE`  |  `/orders/<int>`  |  `Delete Specific Order`  |
 |  `GET`  |  `/restaurants`  |  `Get all Restaurants`  |
-|  `POST`  |  ``/restaurants`  |  `Add a Restaurant`  |
+|  `POST`  |  `/restaurants`  |  `Add a Restaurant`  |
 |  `DELETE`  |  `/restaurants/<int:restId>`  |  `Delete a Restaurant`  |
-|  `POST`  |  `/admin/Logout`  |  `Logsout a User`  |
-|  `POST`  |  `/user/Logout`  |  `Logsout a User`  |
+|  `POST`  |  `/admin/Logout`  |  `Logs Out a Admin`  |
+|  `POST`  |  `/user/Logout`  |  `Logs Out a User`  |
 
 ## How to run flask application
 1. Create a folder <foodhub-delivery> on your computer
@@ -111,6 +112,6 @@ A Flask application that enables Users order and have food delivered to them.
 - Mugerwa Joseph Lumu
 
 
-* **code sleuth** - *Inspired By* - [code-sleuth](https://github.com/code-sleuth)
+* **Ibrahim Mbaziira** - *Inspired By* - [code-sleuth](https://github.com/code-sleuth)
 
-* **Kodek Sleuth** - *Initial work* - [kodek2000](https://github.com/kodek2000)
+* **Mugerwa Joseph Lumu** - *Initial work* - [kodek2000](https://github.com/kodek2000)
