@@ -64,6 +64,13 @@ class LoginView(MethodView):
                 }
                 
                 return make_response(jsonify(response)), 201
+            
+            elif user.Password!=request_data["Password"]:
+                response={
+                    "Message":"Invalid Password"
+                }
+                return make_response(jsonify(response)), 401
+                
         
         except:
             response={

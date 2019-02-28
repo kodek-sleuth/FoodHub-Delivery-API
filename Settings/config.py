@@ -24,10 +24,20 @@ class TestingConfig(Config):
 
 class StagingConfig(Config):
     DEBUG=True
+    DEVELOPMENT=True
+    USER_SECRET_KEY='its nolonger a secret'
+    ADMIN_SECRET_KEY='secret'
+    SQLALCHEMY_DATABASE_URI='postgresql://josekodek:kevina52@localhost:5432/foodhub'
+    SQLALCHEMY_TRACK_MODIFICATIONS=False 
 
 class ProductionConfig(Config):
     DEBUG=False
     TESTING=False
+    USER_SECRET_KEY='its nolonger a secret'
+    ADMIN_SECRET_KEY='secret'
+    SQLALCHEMY_DATABASE_URI='postgresql://postgres:believe@localhost:5432/foodhubproduction'
+    SQLALCHEMY_TRACK_MODIFICATIONS=False 
+
 
 app_config={
     'development': DevelopmentConfig,
