@@ -1,3 +1,4 @@
+import sqlite3
 class Config():
     USER_SECRET_KEY='its nolonger a secret'
     ADMIN_SECRET_KEY='secret'
@@ -9,7 +10,7 @@ class DevelopmentConfig(Config):
     DEVELOPMENT=True
     USER_SECRET_KEY='its nolonger a secret'
     ADMIN_SECRET_KEY='secret'
-    SQLALCHEMY_DATABASE_URI='postgresql://josekodek:kevina52@localhost:5432/foodhub'
+    SQLALCHEMY_DATABASE_URI='sqlite:///site.db'
     SQLALCHEMY_TRACK_MODIFICATIONS=False 
     
 class TestingConfig(Config):
