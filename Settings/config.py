@@ -37,7 +37,7 @@ class ProductionConfig(Config):
     TESTING=False
     USER_SECRET_KEY='its nolonger a secret'
     ADMIN_SECRET_KEY='secret'
-    SQLALCHEMY_DATABASE_URI= os.getenv(' DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI= 'postgres://mutuzlpuljivzw:69a338c640a2fc6274a6e7992b7ce15efb72c6530aee22bca98e5a47a9d4f5f2@ec2-50-17-193-83.compute-1.amazonaws.com:5432/d32n5c5v10hgof'
     SQLALCHEMY_TRACK_MODIFICATIONS=False 
 
 
