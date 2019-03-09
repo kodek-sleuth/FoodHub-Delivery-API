@@ -37,7 +37,7 @@ class ProductionConfig(Config):
     TESTING=False
     USER_SECRET_KEY='its nolonger a secret'
     ADMIN_SECRET_KEY='secret'
-    SQLALCHEMY_DATABASE_URI= os.getenv('HEROKU_POSTGRESQL_NAVY_URL')
+    SQLALCHEMY_DATABASE_URI= os.getenv(' DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS=False 
 
 
