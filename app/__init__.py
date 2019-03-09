@@ -27,7 +27,6 @@ def create_app(config_name):
         },
 
         'schemes': [
-            'http',
             'https'
         ],
 
