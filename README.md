@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/kodek2000/Food-Hub-Backend.svg?branch=master)](https://travis-ci.org/kodek2000/Food-Hub-Backend)
+[![Build Status](https://travis-ci.org/kodek-sleuth/Food-Hub-API.svg?branch=master)](https://travis-ci.org/kodek-sleuth/Food-Hub-API)
 [![Coverage Status](https://coveralls.io/repos/github/kodek2000/Food-Hub-Backend/badge.svg?branch=master)](https://coveralls.io/github/kodek2000/Food-Hub-Backend?branch=master)
 
 # **FOODHUB-DELIVERY API**
