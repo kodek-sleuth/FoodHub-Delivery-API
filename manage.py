@@ -4,7 +4,7 @@ from app import db, create_app
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
-app=create_app(config_name='development')
+app=create_app(config_name='production')
 
 migrate=Migrate(app, db)
 manager=Manager(app)
