@@ -1,4 +1,5 @@
 import sqlite3
+import os
 class Config():
     USER_SECRET_KEY='its nolonger a secret'
     ADMIN_SECRET_KEY='secret'
@@ -36,7 +37,7 @@ class ProductionConfig(Config):
     TESTING=False
     USER_SECRET_KEY='its nolonger a secret'
     ADMIN_SECRET_KEY='secret'
-    SQLALCHEMY_DATABASE_URI='postgresql://postgres:believe@localhost:5432/foodhubproduction'
+    SQLALCHEMY_DATABASE_URI= os.getenv('HEROKU_POSTGRESQL_NAVY_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS=False 
 
 
